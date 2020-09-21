@@ -219,14 +219,15 @@ namespace SemVer
         /// <param name="rangeSpec">The range specification string.</param>
         /// <param name="loose">When true, be more forgiving of some invalid version specifications.</param>
         /// <exception cref="System.ArgumentException">Thrown when the range specification is invalid.</exception>
-        public static Range Parse(string rangeSpec, bool loose = false) 
+        /// <returns>The Range</returns>
+        public static Range Parse(string rangeSpec, bool loose = false)
             => new Range(rangeSpec, loose);
 
         /// <summary>
         /// Try to construct a new range from a range specification. 
         /// </summary>
         /// <param name="rangeSpec">The range specification string.</param>
-        /// <param name="result">The Range</param>
+        /// <param name="result">The Range, or null when parse fails.</param>
         /// <returns>A boolean indicating success of the parse operation.</returns>
         public static bool TryParse(string rangeSpec, out Range result)
             => TryParse(rangeSpec, loose: false, out result);
@@ -235,8 +236,8 @@ namespace SemVer
         /// Try to construct a new range from a range specification. 
         /// </summary>
         /// <param name="rangeSpec">The range specification string.</param>
-        /// <param name="result">The Range</param>
         /// <param name="loose">When true, be more forgiving of some invalid version specifications.</param>
+        /// <param name="result">The Range, or null when parse fails.</param>
         /// <returns>A boolean indicating success of the parse operation.</returns>
         public static bool TryParse(string rangeSpec, bool loose, out Range result)
         {
